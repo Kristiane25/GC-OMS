@@ -188,7 +188,7 @@
                 </div> 
 
                 <footer class="footer text-right">
-                    Copyright © Internship Management System
+                    Copyright © GC-OMS
                 </footer>
 
             </div>

@@ -7,22 +7,29 @@ $message="Hello Admin";
     if(isset($_POST['login']))  
     {  
         $user_name=$_POST['username'];  
-        $user_pass=$_POST['password'];  
+        $user_pass=$_POST['password'];
   
-        $check_user="select * from login_user WHERE a_user='$user_name'AND a_password='$user_pass'";  
+        $check_user="select * from admin_login WHERE admin_name='$user_name'AND admin_pass='$user_pass'";  
   
         $run=mysqli_query($con,$check_user);  
   
         if(mysqli_num_rows($run))  
         {  
-            echo "<script>window.open('admin/index.php','_self')</script>";  
+            $row = mysqli_fetch_assoc($run);
+            $position = $row['position']; 
+
+            echo "<scrip>window.open('admin/index.php','_self')</script>";  
   
             $_SESSION['username']=$user_name;//here session is used and value of $user_email store in $_SESSION.  
-  
+            $_SESSION['position'] = $position;
+           
         }  
         else  
         {  
-            echo "<script>alert('Username or password is incorrect!')</script>";  
+          
+            echo '<script>alert("This is an alert message!");</script>';
+            header('Location: admin_index.php');
+            
         }  
     }  
 ?>  

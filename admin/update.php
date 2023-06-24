@@ -1,59 +1,41 @@
-<?php
-  session_start();  
-?>
 
-
-<?php
-  $conn2=mysqli_connect('localhost','root','','student_demo');
-
-  $update_record = @$_GET['id'];
-  
-
-  $qu="SELECT * FROM u_reg WHERE u_id='$update_record'";
-  $run1=mysqli_query($conn2,$qu);
-
-  while ($row=mysqli_fetch_array($run1))
-  {
-     $update_id=$row['u_id'];
-     $u_name=$row[0];
-     $u_email=$row[1];
-     $u_contact=$row[2];
-     $u_degree=$row[3];
-     $u_college=$row[4];
-     $u_dur=$row[5];
-     $u_tech=$row[6];
-     $u_guide=$row[7];
-     $u_jdate=$row[8];
-     $u_NOC=$row[9];
-     
-  }
-
-?>
-
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+    <!--    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <title>Admin | Dashboard</title>
 
-        <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        App css -->
+        <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
         <script src="assets/js/modernizr.min.js"></script>
 
-    </head>
+    </head> -->
 
 
-    <body class="fixed-left">
+    <!-- <body class="fixed-left"> -->
 
-        <div id="wrapper">
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+</head>
+<body>
+    <h2>Upload File</h2>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+
+        <!-- <div id="wrapper">
 
             <div class="topbar">
 
@@ -302,7 +284,7 @@
                     Copyright © Internship Management System
                 </footer>
 
-            </div>
+            </div> -->
 
 
 
@@ -330,7 +312,7 @@
 </html>
 
 
-<?php
+<!-- <?php
 
   include 'connection.php';
 
@@ -371,5 +353,5 @@
  
  }
 
-?> 
+?>  -->
   
