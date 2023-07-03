@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/form-elements.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets\css\style.css">
 
 
   <!-- <link rel="stylesheet" href="fonts/Oswald/Oswald.ttf">
@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="background-image: url('assets/img/backgrounds/4.jpg'); background-size: 110% auto; background-repeat: no-repeat">
+<body>
 
   <!-- <div class="container-fluid text-white">
 
@@ -129,7 +129,7 @@
           </div>
         </div> -->
         <div class="col-sm-6 col-sm-offset-3 form-box">
-          <div class="form-top">
+          <div class="form-top" style="background-color: #de995e;">
           <h3>Gordon College OJT</h3>
           <h3>Management System</h3>
             <div class="form-top-left"> 

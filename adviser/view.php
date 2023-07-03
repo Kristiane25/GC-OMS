@@ -85,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
     <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Favicon and touch icons -->
@@ -98,13 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="fixed-left">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC - OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i></button>GC - OMS</a>
         <!-- Sidebar Toggle-->
         <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
         <!-- <i class="fas fa-bars"></i></button> -->
         <!-- Navbar Search-->
         <div>
-            <h4 class="m-t-10 m-l-50 header-title">Dashboard</h4>
+            <h4 class="m-t-10 m-l-20 header-title">View Students</h4>
         </div>
         <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="time">
@@ -258,7 +260,7 @@ while ($row = mysqli_fetch_array($run)) {
                                                         <h5 class="modal-title" id="successModalLabel">Success</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
-                                                            <!-- <span aria-hidden="true">&times;</span> 
+                                                            <span aria-hidden="true">&times;</span> 
                                                         </button>
                                                     </div>
                                                     <div class="modal-body text-white">
@@ -292,7 +294,7 @@ while ($row = mysqli_fetch_array($run)) {
                             </tbody>
                         </table>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <style>
@@ -486,7 +488,7 @@ while ($row = mysqli_fetch_array($run)) {
                                 <td><?php echo $company_contact_no; ?></td>
                                 <td><?php echo $company_email; ?></td>
                                 <td><?php echo $company_supervisor; ?></td>
-                                <!-- <td><?php echo $u_jdate; ?></td>
+                                <td><?php echo $u_jdate; ?></td>
                                                     <td><?php echo $u_NOC; ?></td> -->
     <!-- <td><a href="delete.php?id=<?php echo $u_id; ?>" class="text-white"> <button class="btn-danger btn" >  Delete </button></a> </td>
                                                     <td><a href="update.php?id=<?php echo $u_id; ?>" class="text-white"> <button class="btn-primary btn">  Update </button></a>  </td> -->

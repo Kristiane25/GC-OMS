@@ -1,10 +1,8 @@
 
 body {
-	background-image: url('assets/img/backgrounds/4.jpg');
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
-    color: #888;
     line-height: 30px;
     text-align: center;
 	background-color: #ffffff;
@@ -182,6 +180,7 @@ img { max-width: 100%; }
 @media (max-width: 767px) {
 	
 	.inner-bg { padding: 60px 0 110px 0; }
+	
 
 }
 

@@ -27,7 +27,9 @@ include 'connection.php';
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 
     <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="../assets/img/logo/gcoms.png">
@@ -37,13 +39,14 @@ include 'connection.php';
 <body class="sb-nav-fixed bg-light">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC - OMS</a>
-        <!-- Sidebar Toggle-->
-        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
-        <!-- <i class="fas fa-bars"></i></button> -->
+        
+        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i></button>GC - OMS</a>
+        <!-- Sidebar Toggle -->
+        
         <!-- Navbar Search-->
         <div>
-            <h4 class="m-t-10 m-l-50 header-title">Dashboard</h4>
+            <h4 class="m-t-10 m-l-20 header-title">Dashboard</h4>
         </div>
         <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="time">
@@ -58,9 +61,9 @@ include 'connection.php';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <img class="userpic" src="assets/images/\users/user.jpg"
-                                style="width:90px;height:90px;">
-                        <a id="department" class="nav-link text-center" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <img class="userpic" src="assets/images/\users/user.jpg" style="width:90px;height:90px;">
+                        <a id="department" class="nav-link text-center" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp;
+                            &nbsp; &nbsp; &nbsp;
                             <?php echo $_SESSION['username']; ?>
                             <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $_SESSION['position']; ?></a>
                         <a class="nav-link" href="index.php">

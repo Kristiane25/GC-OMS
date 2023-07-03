@@ -32,6 +32,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
     <script src="assets/js/modernizr.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Favicon and touch icons -->
@@ -43,13 +44,14 @@
 <body class="fixed-left">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC - OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i></button>GC - OMS</a>
         <!-- Sidebar Toggle-->
         <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
         <!-- <i class="fas fa-bars"></i></button> -->
         <!-- Navbar Search-->
         <div>
-            <h4 class="m-t-10 m-l-50 header-title">Edit Company Information</h4>
+            <h4 class="m-t-10 m-l-20 header-title">Edit Company Information</h4>
         </div>
         <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="time">

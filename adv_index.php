@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="background-image: url('assets/img/backgrounds/4.jpg'); background-size: 110% auto; background-repeat: no-repeat">
+<body>
 
   <!-- <div class="container-fluid text-white">
 
@@ -95,7 +95,7 @@
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </form>
         </div> -->
-<!-- 
+  <!-- 
   <script>
     function openForm() {
       document.getElementById("myForm").style.display = "block";
@@ -110,13 +110,13 @@
   </div>
   </div> -->
 
-<div class="container">
+  <div class="container">
 
-  <div class="top-content">
+    <div class="top-content">
 
-    <div class="inner-bg">
-      <div class="container">
-        <!-- <div class="row">
+      <div class="inner-bg">
+        <div class="container">
+          <!-- <div class="row">
           <div class="col-sm-8 col-sm-offset-2 text">
             <h1><strong>Bootstrap</strong> Login Form</h1>
             <div class="description">
@@ -128,33 +128,33 @@
             </div>
           </div>
         </div> -->
-        <div class="col-sm-6 col-sm-offset-3 form-box">
-          <div class="form-top">
-          <h3>Gordon College OJT</h3>
-          <h3>Management System</h3>
-            <div class="form-top-left"> 
-              <!-- <p>Enter your username and password to log on:</p> -->
+          <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="form-top" style="background-color: #de995e;">
+              <h3>Gordon College OJT</h3>
+              <h3>Management System</h3>
+              <div class="form-top-left">
+                <!-- <p>Enter your username and password to log on:</p> -->
+              </div>
+              <div class="form-top-right">
+
+                <!-- <i class="fa fa-lock"></i> -->
+              </div>
             </div>
-            <div class="form-top-right">
-              
-              <!-- <i class="fa fa-lock"></i> -->
+            <div class="form-group form-popup form-bottom" id="myForm">
+              <form action="adviser_login.php" class="form-container" method="post">
+                <div class="form-group">
+                  <label class="sr-only" for="form-username">Email</label>
+                  <input class="form-control" type="text" placeholder="Enter Username" name="adv_name" required>
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="form-password">Password</label>
+                  <input class="form-control" type="password" placeholder="Enter Password" name="adv_pass" required>
+                </div>
+                <button type="submit" class="btn" name="login" value="Login">Sign in!</button>
+              </form>
             </div>
           </div>
-          <div class="form-group form-popup form-bottom" id="myForm">
-            <form action="adviser_login.php" class="form-container" method="post">
-              <div class="form-group">
-                <label class="sr-only" for="form-username">Email</label>
-                <input class="form-control" type="text" placeholder="Enter Username" name="adv_name" required>
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="form-password">Password</label>
-                <input class="form-control" type="password" placeholder="Enter Password" name="adv_pass" required>
-              </div>
-              <button type="submit" class="btn" name="login" value="Login">Sign in!</button>
-            </form>
-          </div>
-        </div>
-        <!-- <div class="row">
+          <!-- <div class="row">
           <div class="col-sm-6 col-sm-offset-3 social-login">
             <h3>...or login with:</h3>
             <div class="social-login-buttons">
@@ -170,11 +170,11 @@
             </div>
           </div>
         </div> -->
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
 
   <!-- <script src="assets/js/jquery-1.11.1.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
