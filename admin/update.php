@@ -1,41 +1,37 @@
+<?php
 
- <!DOCTYPE html>
+  session_start();
+  ?>
+
+<?php
+include 'connection.php'; 
+ ?>
+
+<!DOCTYPE html>
 <html>
     <head>
-    <!--    <meta charset="utf-8">
+      <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <title>Admin | Dashboard</title>
 
-        App css -->
-        <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+       <!--  App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
         <script src="assets/js/modernizr.min.js"></script>
 
-    </head> -->
+    </head>
 
 
-    <!-- <body class="fixed-left"> -->
+    <body class="fixed-left">
 
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>File Upload</title>
-</head>
-<body>
-    <h2>Upload File</h2>
-    <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
-</body>
-</html>
+    
 
-        <!-- <div id="wrapper">
+        <div id="wrapper">
 
             <div class="topbar">
 
@@ -155,13 +151,13 @@
 
                                         <div class="form-group">
                                             <label for="id">ID: </label>
-                                            <input type="text" class="form-control"  name="n_id" value="<?php echo $update_id; ?>" disabled>
+                                            <input type="text" class="form-control"  name="n_id" value="<?php echo $u_id; ?>" disabled>
                                            
                                         </div>
 
                                         <div class="form-group">
                                             <label for="name">Name </label>
-                                            <input type="text" class="form-control" name="n_name" value="<?php echo $u_name; ?>" >
+                                            <input type="text" class="form-control" name="n_name" value="<?php echo $name; ?>" >
                                         </div>
                                         
                                         
@@ -284,7 +280,7 @@
                     Copyright © Internship Management System
                 </footer>
 
-            </div> -->
+            </div>
 
 
 
@@ -312,7 +308,7 @@
 </html>
 
 
-<!-- <?php
+<?php
 
   include 'connection.php';
 
@@ -332,8 +328,8 @@
 	$date1=$_POST['n_date'];
 	$noc1=$_POST['n_noc']; 
 
-    // echo $id1;
-    // echo "Hello ";
+    echo $id1;
+    echo "Hello ";
 
     $q="UPDATE u_reg SET u_name = '$name1',  u_email = '$email1', u_contact = $contact1 , u_degree ='$degree1', u_college ='$collage1' , u_dur ='$dur1' , u_tech ='$tech1' , u_guide ='$guide1' , u_jdate = '$date1' , u_NOC ='$noc1' 
     WHERE u_id = '$id1'  ";
@@ -346,12 +342,12 @@
   echo "<script>window.open('view.php?updated=ID: $id1 has been Updated..!','_self')</script>";
   
  }
-//  else{
-//    echo "not updated";
-//  }
+  else{
+   echo "not updated";
+  }
 
  
  }
 
-?>  -->
+?>  
   

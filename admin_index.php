@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GC-OMS</title>
+  <title>GC-OMS | Admin</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -25,7 +25,7 @@
   <script src="index.js"></script> -->
 
   <!-- Favicon and touch icons -->
-  <link rel="shortcut icon" href="assets\img\logo\favicon.png">
+  <link rel="shortcut icon" href="assets\img\logo\gcoms.png">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
@@ -150,7 +150,7 @@
                 <label class="sr-only" for="form-password">Password</label>
                 <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
               </div>
-              <button type="submit" class="btn" name="login" value="Login">Sign in!</button>
+              <button type="submit" class="btn" name="login" value="Login">Log in!</button>
             </form>
           </div>
         </div>

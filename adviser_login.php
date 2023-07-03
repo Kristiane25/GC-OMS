@@ -16,17 +16,21 @@ $message="Hello Admin";
         if(mysqli_num_rows($run))  
         {  
             $row = mysqli_fetch_assoc($run);
-            $prog = $row['program']; 
+            $prog = $row['program'];
+            $adv_id = $row['adv_no'];
 
             echo "<script>window.open('adviser/index.php','_self')</script>";  
   
             $_SESSION['adv_name']=$adv_name;
-            $_SESSION['program']=$prog;//here session is used and value of $user_email store in $_SESSION.  
+            $_SESSION['program']=$prog;
+            $_SESSION['adv_no']=$adv_id;//here session is used and value of $user_email store in $_SESSION.  
   
         }  
         else  
         {  
-            echo "<script>alert('Username or password is incorrect!')</script>";  
+            echo "<script>alert('Username or password is incorrect!')</script>";
+            echo "<script>window.open('adv_index.php','_self')</script>";  
+  
         }  
     }  
 ?>  

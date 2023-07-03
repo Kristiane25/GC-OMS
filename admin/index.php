@@ -1,6 +1,7 @@
 <?php
   session_start();  
 ?>
+
 <?php
 include 'connection.php'; 
  ?>
@@ -27,20 +28,19 @@ include 'connection.php';
 
     <script src="assets/js/modernizr.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-</head>
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="../assets/img/logo/gcoms.png">
 
 </head>
-
-
-<!-- <body class="fixed-left"> -->
 
 <body class="sb-nav-fixed bg-light">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center" href="index.php">GC - OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC - OMS</a>
         <!-- Sidebar Toggle-->
         <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
-            <!-- <i class="fas fa-bars"></i></button> -->
+        <!-- <i class="fas fa-bars"></i></button> -->
         <!-- Navbar Search-->
         <div>
             <h4 class="m-t-10 m-l-50 header-title">Dashboard</h4>
@@ -52,16 +52,17 @@ include 'connection.php';
         </form> -->
         <!-- Navbar-->
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                <div class="nav">
-                        <a href="index.php"><img class="userpic" src="assets/images/\users/user.jpg"
-                                style="width:90px;height:90px;"></a>
-                        <a id="department" class="nav-link" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <div class="nav">
+                        <img class="userpic" src="assets/images/\users/user.jpg"
+                                style="width:90px;height:90px;">
+                        <a id="department" class="nav-link text-center" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <?php echo $_SESSION['username']; ?>
-                            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?php echo $_SESSION['position']; ?></a>
+                            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $_SESSION['position']; ?></a>
                         <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Dashboard
@@ -79,18 +80,17 @@ include 'connection.php';
                             Forums
                         </a> -->
 
-                     
-                            <a class="text-black btn btn-lg btn-primary" href="logout.php"><i class="mr-2 fas fa-sign-out"></i>LOGOUT</a>
-                      
                         <br>
                         <br>
-                        <!-- <div class="foot">
-                            <footer class="footer text-center">
-                                Copyright © GC-OMS
-                            </footer>
-                        </div> -->
- </nav>
+                        <br>
+                        <a class="text-black btn btn-lg btn-primary" href="logout.php"><i
+                                class="mr-2 fas fa-sign-out"></i>LOGOUT</a>
+
+                    </div>
+                </div>
+            </nav>
         </div>
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-1">
@@ -123,7 +123,7 @@ include 'connection.php';
                                 <div class="widget-detail-1">
                                     <?php
                                             $con=mysqli_connect('localhost','root','','u_reg');
-                                            $que='SELECT * FROM u_reg';
+                                            $que='SELECT * FROM stud_login';
                                             $run=mysqli_query($con,$que);
                                             $number=mysqli_num_rows($run);
                 

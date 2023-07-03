@@ -18,7 +18,7 @@ $message="Hello Admin";
             $row = mysqli_fetch_assoc($run);
             $position = $row['position']; 
 
-            echo "<scrip>window.open('admin/index.php','_self')</script>";  
+            echo "<script>window.open('admin/index.php','_self')</script>";  
   
             $_SESSION['username']=$user_name;//here session is used and value of $user_email store in $_SESSION.  
             $_SESSION['position'] = $position;
@@ -27,8 +27,9 @@ $message="Hello Admin";
         else  
         {  
           
-            echo '<script>alert("This is an alert message!");</script>';
-            header('Location: admin_index.php');
+            echo "<script>alert('Username or password is incorrect!')</script>";
+            echo "<script>window.open('admin_index.php','_self')</script>";  
+  
             
         }  
     }  

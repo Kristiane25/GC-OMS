@@ -118,8 +118,9 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 } */
 
+
 .department{
-  margin-left: 60px;
+  justify-content: center !important;
 }
 
 .userpic{

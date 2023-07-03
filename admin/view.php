@@ -3,6 +3,7 @@
   session_start();
   ?>
 
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if a file was uploaded successfully
@@ -67,8 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- App css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
 
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -79,6 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="assets/js/modernizr.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="../assets/img/logo/gcoms.png">
+
 </head>
 
 </head>
@@ -87,31 +93,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="fixed-left">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php">GC - OMS</a>
         <!-- Sidebar Toggle-->
-        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
-            <i class="fas fa-bars"></i></button> -->
+        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
+        <!-- <i class="fas fa-bars"></i></button> -->
         <!-- Navbar Search-->
         <div>
-            <h4 class="m-t-10 m-l-50 header-title">View Students</h4>
+            <h4 class="m-t-10 m-l-50 header-title">Dashboard</h4>
         </div>
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="time">
-                <!-- <h5> <i class="fa fa-calendar" aria-hidden="true"></i> <span id="time"> </span></h5> -->
+                <h5> <i class="fa fa-calendar" aria-hidden="true"></i> <span id="time"> </span></h5>
             </div>
-        </form>
+        </form> -->
         <!-- Navbar-->
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a href="index.php"><img class="userpic" src="assets/images/\users/user.jpg"
-                                style="width:90px;height:90px;"></a>
-                        <a id="department" class="nav-link" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <img class="userpic" src="assets/images/\users/user.jpg"
+                                style="width:90px;height:90px;">
+                        <a id="department" class="nav-link text-center" href="index.php"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <?php echo $_SESSION['username']; ?>
-                            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $_SESSION['position']; ?></a>
+                            <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?php echo $_SESSION['position']; ?></a>
                         <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Dashboard
@@ -129,17 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             Forums
                         </a> -->
 
-                        <button class="signoutbtn" id="btnNavbarSearch" type="button">
-                            <a class="text-black" href="logout.php"><i class="fas fa-sign-out"></i></a>
-                        </button>
                         <br>
                         <br>
-                        <div class="foot">
-                            <!-- <footer class="footer text-center">
-                                Copyright © GC-OMS
-                            </footer>
-                        </div> -->
+                        <br>
+                        <a class="text-black btn btn-lg btn-primary" href="logout.php"><i
+                                class="mr-2 fas fa-sign-out"></i>LOGOUT</a>
 
+                    </div>
+                </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
@@ -175,12 +179,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php echo @$_GET['updated'];  ?>
             <div class="container">
                 <div class="table-container">
-                    <div class="table-responsive">
+                    <div class="table-responsive table-striped">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>User ID</th>
                                     <th>Name</th>
+                                    <th>Program</th>
                                     <th>Email</th>
                                     <th>Contact #</th>
                                     <th>Company Name</th>
@@ -195,23 +200,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <?php
                     $con = mysqli_connect('localhost', 'root', '', 'u_reg');
 
-                    $que = 'SELECT * FROM u_reg';
+                    $que = 'SELECT * FROM stud_login';
                     $run = mysqli_query($con, $que);
 
                     while ($row = mysqli_fetch_array($run)) {
                         $u_id = $row['u_id'];
                         $name = $row[0];
-                        $email = $row[1];
-                        $contact_no = $row[3];
-                        $company_name = $row[4];
-                        $company_address = $row[5];
-                        $company_contact_no = $row[6];
-                        $company_email = $row[7];
-                        $company_supervisor = $row[8];
+                        $program = $row[1];
+                        $email = $row[2];
+                        $contact_no = $row[4];
+                        $company_name = $row[5];
+                        $company_address = $row[6];
+                        $company_contact_no = $row[7];
+                        $company_email = $row[8];
+                        $company_supervisor = $row[9];
                     ?>
                                 <tr>
                                     <td><?php echo $u_id; ?></td>
                                     <td><?php echo $name; ?></td>
+                                    <td><?php echo $program; ?></td>
                                     <td><?php echo $email; ?></td>
                                     <td><?php echo $contact_no; ?></td>
                                     <td><?php echo $company_name; ?></td>
@@ -220,12 +227,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <td><?php echo $company_email; ?></td>
                                     <td><?php echo $company_supervisor; ?></td>
                                     <td>
-                                        <form id="uploadForm" action="view.php" method="POST"
+                                        <!-- <form id="uploadForm" action="view.php" method="POST"
                                             enctype="multipart/form-data" onsubmit="return validateForm()">
                                             <input type="file" name="file">
-                                            <!-- <input type="hidden" name="id" value="<?php echo $u_id; ?>"> -->
+                                            <input type="hidden" name="id" value="<?php echo $u_id; ?>"> 
                                             <input type="submit" value="Upload" id="upload-button">
-                                        </form>
+                                        </form> -->
 
                                         <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
                                             aria-labelledby="successModalLabel" aria-hidden="true">
@@ -237,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                         <!-- <span aria-hidden="true">&times;</span> -->
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body text-white">
                                                         The file has been successfully uploaded.
                                                     </div>
                                                 </div>
@@ -326,161 +333,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    <!-- <div class="left side-menu">
-        <div class="sidebar-inner slimscrollleft"> -->
-
-    <!-- User -->
-    <!-- <div class="user-box">
-                <div class="user-img">
-                    <img src="assets/images/users/avatar-1.png" alt="user-img" title="admin"
-                        class="rounded-circle img-thumbnail img-responsive">
-                    <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
-                </div>
-                <h5><a href="index.php"><?php echo $_SESSION['username']; ?></a> </h5>
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="mdi mdi-settings"></i>
-                        </a>
-                    </li>
-
-                    <li class="list-inline-item">
-                        <a href="#" class="text-custom">
-                            <i class="mdi mdi-power"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div> -->
-
-
-
-
-
-    <!-- <div id="sidebar-menu">
-                <ul>
-
-                    <li>
-                        <a href="index.php" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard
-                            </span> </a>
-                    </li>
-
-                    <li>
-                        <a href="admin.php" class="waves-effect"><i class="mdi mdi-account-box"></i> <span> Manage
-                                Admins </span> </a>
-                    </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-box"></i>
-                            <span>Manage Students </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="view.php">Update or Delete</a></li>
-                            <li><a href="search.php">Search By</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="clearfix"></div>
-
-        </div>
-
-    </div> -->
-
-
-
-
-    <!-- <div class="content-page">
-
-
-        <div class="content">
-
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <h4 class="m-t-0 header-title">Viewing Records</h4>
-
-                    <?php echo @$_GET['deleted'];  ?>
-                    <?php echo @$_GET['updated'];  ?>
-
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>User ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Contact #</th>
-                                <th>Company Name</th>
-                                <th>Company Address</th>
-                                <th>Company Contact #</th>
-                                <th>Company Email</th>
-                                <th>Company Supervisor</th> -->
-    <!-- <th>Join Date</th>
-                                                    <th>NOC</th>
-                                                    <th> Delete </th>
-                                                    <th> Update </th> -->
-    <!-- </tr>
-
-                        </thead>
-
-
-
-                        <tbody>
-                            <tr>
-
-                                <?php
-          $con=mysqli_connect('localhost', 'root', '', 'u_reg');
-
-  $que='SELECT * FROM u_reg';
-  $run=mysqli_query($con, $que);
-
-
-  while ($row=mysqli_fetch_array($run)) {
-      $u_id=$row['u_id'];
-      $name=$row[0];
-      $email=$row[1];
-      $contact_no=$row[2];
-      $company_name=$row[3];
-      $company_address=$row[4];
-      $company_contact_no=$row[5];
-      $company_email=$row[6];
-      $company_supervisor=$row[7];
-      // $u_jdate=$row[8];
-      // $u_NOC=$row[9];
-
-
-      ?>
-
-                                <td><?php echo $u_id; ?></td>
-                                <td><?php echo $name ;?></td>
-                                <td><?php echo $email; ?></td>
-                                <td><?php echo $contact_no; ?></td>
-                                <td><?php echo $company_name; ?></td>
-                                <td><?php echo $company_address; ?></td>
-                                <td><?php echo $company_contact_no; ?></td>
-                                <td><?php echo $company_email; ?></td>
-                                <td><?php echo $company_supervisor; ?></td>
-                                <!-- <td><?php echo $u_jdate; ?></td>
-                                                    <td><?php echo $u_NOC; ?></td> -->
-    <!-- <td><a href="delete.php?id=<?php echo $u_id; ?>" class="text-white"> <button class="btn-danger btn" >  Delete </button></a> </td>
-                                                    <td><a href="update.php?id=<?php echo $u_id; ?>" class="text-white"> <button class="btn-primary btn">  Update </button></a>  </td> -->
-    <!-- </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div> -->
-
-    <!-- <footer class="footer text-right">
-                        Copyright © GC-OMS
-                </footer> -->
 
     </div>
 
@@ -519,7 +371,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: 'upload.php',
+                    url: 'view.php',
                     type: 'POST',
                     data: formData,
                     contentType: false,

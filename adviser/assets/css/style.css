@@ -45,7 +45,7 @@ body {
   margin: 0;
   padding-bottom: 60px;
   overflow-x: hidden;
-  color: #010101;
+  color: #918a8a !important;
   font-size: 14px;
 }
 
@@ -418,6 +418,11 @@ hr {
   width: 100%;
 }
 
+.table-container {
+  height: 400px; /* Adjust the height as per your requirement */
+  overflow-y: scroll;
+}
+
 .table-box .table-detail {
   display: table-cell;
   vertical-align: middle;
@@ -649,6 +654,7 @@ hr {
 
 .text-black {
   color: #0d0d0f !important;
+  font-size: large;
 }
 
 .text-white {
@@ -1040,7 +1046,7 @@ select[multiple] {
 .modal .modal-dialog .modal-content {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-  background-color: #2f3e47;
+  background-color: #fdfdfd;
   border-color: #394c57;
   border-radius: 2px;
   box-shadow: none;
@@ -1428,7 +1434,8 @@ pre {
 }
 
 .btn-group-lg > .btn, .btn-lg {
-  padding: 10px 16px !important;
+  margin-top: 10rem;
+  /* padding: 10px 16px !important; */
   font-size: 16px;
 }
 
@@ -2326,13 +2333,13 @@ pre {
 .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active,
 .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td,
 .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
-  background-color: #ffffff !important;
+  background-color: #000000 !important;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th,
 .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td,
 .table > thead > tr > th, .table-bordered {
-  border-color: #ffffff;
+  border-color: #000000;
 }
 
 .table-bordered > thead > tr > th,
@@ -2341,20 +2348,20 @@ pre {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border-color: #ffffff;
+  border-color: #000000;
 }
 
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-color: #ffffff;
+  border-color: #000000;
 }
 
 .table-bordered {
-  border-color: #ffffff;
+  border-color: #000000;
 }
 
 .table-dark td, .table-dark th, .table-dark thead th {
-  border-color: #ffffff !important;
+  border-color: #000000 !important;
 }
 
 table.focus-on tbody tr.focused th {
@@ -2460,7 +2467,7 @@ table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
 
 .table-rep-plugin .checkbox-row input[type="checkbox"]:checked + label::before {
   background-color: #ffffff;
-  border-color: #ffffff;
+  border-color: #000000;
 }
 
 .table-rep-plugin .checkbox-row input[type="checkbox"]:checked + label::after {
