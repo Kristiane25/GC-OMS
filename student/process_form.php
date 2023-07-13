@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         . "Gordon College";
 
     $pdf->MultiCell(0, 10, $content);
-    $pdf->Output('D', 'recommendation_letter.pdf');
+    $pdf->Output('D', 'Endorsement_letter.pdf');
     exit();
 }
 

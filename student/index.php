@@ -21,6 +21,10 @@ include 'connection.php';
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-x1BmVpb5xdYrxAymzFhsP/2b8/2bmm8YDvLP1Wld6zTJjqFgJmD4sJlPIS2WNQERcbhwC5Bko87SkRbp7aR3Iw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <script src="assets/js/modernizr.min.js"></script>
     <script src="assets/js/scripts.js"></script>
@@ -34,8 +38,9 @@ include 'connection.php';
 <body class="sb-nav-fixed bg-light">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
-            <i class="fas fa-bars"></i></button>GC - OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button
+                class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
+                <i class="fas fa-bars"></i></button>GC - OMS</a>
         <!-- Sidebar Toggle-->
         <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
         <!-- <i class="fas fa-bars"></i></button> -->
@@ -56,8 +61,7 @@ include 'connection.php';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <img class="userpic" src="assets/images/\users/user.jpg"
-                                style="width:90px;height:90px;">
+                        <img class="userpic" src="assets/images/\users/user.jpg" style="width:90px;height:90px;">
                         <a id="department" class="nav-link text-center" href="form.php"> &nbsp; &nbsp; &nbsp;
                             <?php echo $_SESSION['name']; ?>
                             <br><?php echo $_SESSION['program']; ?></a>
@@ -69,6 +73,15 @@ include 'connection.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Edit Company Information
                         </a>
+                        <a href="#" class="dropdown-btn nav-link" style="background-color: transparent";>
+                            <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
+                            Log &nbsp; <i class="fa fa-caret-down"></i>
+                        </a>
+                        <div class="dropdown-container sb-nav-link-icon" style="background-color: transparent">
+                            <a class="nav-link" href="daily_log_start.php">Start</a>
+                            <a class="nav-link" href="daily_log_end.php">End</a>
+
+                        </div>
                         <!-- <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-globe"></i></div>
                             Announcement
@@ -172,6 +185,29 @@ include 'connection.php';
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+        // Indent submenus
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+
+            // Indent submenus
+            var submenu = dropdown[i].nextElementSibling;
+            submenu.style.marginLeft = "20px";
+            submenu.style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

@@ -75,18 +75,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-
-
-
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
+
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
 
     <script src="assets/js/modernizr.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="../assets/img/logo/gcoms.png">
@@ -99,8 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="fixed-left">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
-            <i class="fas fa-bars"></i></button>GC - OMS</a>
+        <a class="navbar-brand text-center font-weight-normal" href="index.php"><button
+                class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!">
+                <i class="fas fa-bars"></i></button>GC - OMS</a>
         <!-- Sidebar Toggle-->
         <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-0 me-lg-0" id="sidebarToggle" href="#!"> -->
         <!-- <i class="fas fa-bars"></i></button> -->
@@ -121,14 +125,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                    <img class="userpic" src="assets/images/\users/user.jpg"
-                                style="width:90px;height:90px;"></a>
+                        <img class="userpic" src="assets/images/\users/user.jpg" style="width:90px;height:90px;"></a>
                         <a id="department" class="nav-link text-center" href="index.php"> &nbsp; &nbsp; &nbsp;
                             <?php echo $_SESSION['adv_name']; ?>
                             <br>&nbsp; &nbsp; &nbsp; <?php echo $_SESSION['program']; ?> Coordinator</a>
                         <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Dashboard
+                        </a>
+                        <a class="nav-link" href="view.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
+                            View
                         </a>
                         <!-- <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-globe"></i></div>
@@ -144,26 +151,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div id="layoutSidenav_content">
 
-            <!-- <div class="container-fluid px-1">
+            <div class="container-fluid px-1">
                 <div class="container-fluid px-1">
-                            <h1 class="mt-4">My Class <i class="fas fa-laptop"></i></h1>
-                            Navbar Search-->
-            <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Search for..."
-                                        aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                    <button class="btn btn-warning" id="btnNavbarSearch" type="button"><i
-                                            class="fas fa-search"></i></button>
-                                </div>
-                            </form> -->
-            <!-- <ol class="breadcrumb mb-4">
+                    <!-- <h1 class="mt-4">My Class <i class="fas fa-laptop"></i></h1>
+                            Navbar Search -->
+                    <form method="POST" action="total_hours.php"
+                        class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                        <div class="input-group mt-3 mb-3">
+                            <input class="form-control" type="text" placeholder=""
+                                aria-label="Search for..." aria-describedby="btnNavbarSearch" id="u_id" name="u_id" />
+                            <button class="btn btn-warning" id="btnNavbarSearch" type="submit">Monitor</button>
+                        </div>
+                    </form>
+                
+                    <!-- <ol class="breadcrumb mb-4">
                                 <br>
                                 <br>
                             </ol> -->
 
-            <!-- </div>  -->
+                    <!-- </div>  -->
 
-            <!-- <div class="content-page">
+                    <!-- <div class="content-page">
 
 
                 <div class="content">
@@ -172,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="col-lg-12"> -->
 
 
-            <div class="container">
+                    <div class="container">
 
 
 
@@ -189,26 +197,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-                <div class="table-container">
-                    <div class="table-responsive table-striped">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Name</th>
-                                    <th>Program</th>
-                                    <th>Email</th>
-                                    <th>Contact #</th>
-                                    <th>Company Name</th>
-                                    <th>Company Address</th>
-                                    <th>Company Contact #</th>
-                                    <th>Company Email</th>
-                                    <th>Company Supervisor</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+                        <div class="table-container">
+                            <div class="table-responsive table-striped">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Name</th>
+                                            <th>Program</th>
+                                            <th>Email</th>
+                                            <th>Contact #</th>
+                                            <th>Company Name</th>
+                                            <th>Company Address</th>
+                                            <th>Company Contact #</th>
+                                            <th>Company Email</th>
+                                            <th>Company Supervisor</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <?php
                     $con = mysqli_connect('localhost', 'root', '', 'u_reg');
 
                     $adviser_id = $_SESSION['adv_no'];
@@ -220,94 +229,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $que = "SELECT * FROM stud_login WHERE program = '$program'";
                     $run = mysqli_query($con, $que);
 
-while ($row = mysqli_fetch_array($run)) {
-    $u_id = $row['u_id'];
-    $name = $row[0];
-    $program = $row[1];
-    $email = $row[2];
-    $contact_no = $row[4];
-    $company_name = $row[5];
-    $company_address = $row[6];
-    $company_contact_no = $row[7];
-    $company_email = $row[8];
-    $company_supervisor = $row[9];
+                    while ($row = mysqli_fetch_array($run)) {
+                    $u_id = $row['u_id'];
+                    $name = $row[0];
+                    $program = $row[1];
+                    $email = $row[2];
+                    $contact_no = $row[4];
+                    $company_name = $row[5];
+                    $company_address = $row[6];
+                    $company_contact_no = $row[7];
+                    $company_email = $row[8];
+                    $company_supervisor = $row[9];
 
-    ?> 
-                                <tr>
-                                    <td><?php echo $u_id; ?></td>
-                                    <td><?php echo $name; ?></td>
-                                    <td><?php echo $program; ?></td>
-                                    <td><?php echo $email; ?></td>
-                                    <td><?php echo $contact_no; ?></td>
-                                    <td><?php echo $company_name; ?></td>
-                                    <td><?php echo $company_address; ?></td>
-                                    <td><?php echo $company_contact_no; ?></td>
-                                    <td><?php echo $company_email; ?></td>
-                                    <td><?php echo $company_supervisor; ?></td>
-                                    <!-- <td>
-                                        <form id="uploadForm" action="view.php" method="POST"
-                                            enctype="multipart/form-data" onsubmit="return validateForm()">
-                                            <input type="file" name="file">
-                                            <input type="hidden" name="id" value="<?php echo $u_id; ?>">
-                                            <input type="submit" value="Upload" id="upload-button">
-                                        </form>
+                    ?>
+                                        <tr>
+                                            <td><?php echo $u_id; ?></td>
+                                            <td><?php echo $name; ?></td>
+                                            <td><?php echo $program; ?></td>
+                                            <td><?php echo $email; ?></td>
+                                            <td><?php echo $contact_no; ?></td>
+                                            <td><?php echo $company_name; ?></td>
+                                            <td><?php echo $company_address; ?></td>
+                                            <td><?php echo $company_contact_no; ?></td>
+                                            <td><?php echo $company_email; ?></td>
+                                            <td><?php echo $company_supervisor; ?></td>
+                                            <!-- <td>
+                                                <button class="btn btn-primary"
+                                                    onclick="openModal(<?php echo $u_id; ?>)">View Hours</button>
+                                            </td> -->
+                                        </tr>
 
-                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="successModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Success</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span> 
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body text-white">
-                                                        The file has been successfully uploaded.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        Error Modal -->
-                                                            <!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="errorModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button> -->
-                                                            <!-- </div>
-                                                    <div class="modal-body">
-                                                        An error occurred during file upload.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr> -->
-                                                            <?php }?>
-                            </tbody>
-                        </table>
+                                        <?php }?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
+                    <style>
+                        .table-container {
+                            height: 590px;
+                            /* Adjust the height as per your requirement */
+                            overflow-y: scroll;
+                        }
+                    </style>
                 </div>
-            </div>
-
-            <style>
-                .table-container {
-                    height: 590px;
-                    /* Adjust the height as per your requirement */
-                    overflow-y: scroll;
-                }
-            </style>
-        </div>
 
 
-        <!-- <div id="wrapper">
+                <!-- <div id="wrapper">
 
         <div class="topbar">
 
@@ -345,8 +314,8 @@ while ($row = mysqli_fetch_array($run)) {
 
                             </ul>
                         </nav> -->
-    </div>
-    </div>
+            </div>
+        </div>
     </div>
 
 
@@ -510,6 +479,12 @@ while ($row = mysqli_fetch_array($run)) {
 
     </div>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -536,31 +511,34 @@ while ($row = mysqli_fetch_array($run)) {
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 
-
-    <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script>
         $(document).ready(function () {
-            $('#uploadForm').submit(function (e) {
-                e.preventDefault(); // Prevent the form from submitting normally
+            var modal = $('#myModal');
+            var button = $('#btnNavbarSearch');
 
-                var formData = new FormData(this);
+            button.click(function () {
+                var uId = $('#u_id').val();
 
                 $.ajax({
-                    url: 'view.php',
+                    url: 'total_hours.php',
                     type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        $('#successModal').modal('show'); // Show the success modal
-                        $('#uploadForm')[0].reset(); // Reset the form
+                    data: {
+                        u_id: uId
                     },
-                    error: function () {
-                        $('#errorModal').modal('show'); // Show the error modal
+                    success: function (response) {
+                        $('#modalContent').html(response);
+                        modal.modal('show');
                     }
                 });
             });
+
+            function closeModal() {
+                modal.modal('hide');
+            }
         });
-    </script>
+    </script> -->
+
 
 
 

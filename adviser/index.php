@@ -65,6 +65,10 @@ include 'connection.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Dashboard
                         </a>
+                        <a class="nav-link" href="view.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
+                            View
+                        </a>
                         <!-- <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-globe"></i></div>
                             Announcement

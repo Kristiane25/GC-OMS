@@ -117,7 +117,24 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 } */
+.dropdown-btn {
+  padding: 6px 8px 6px 16px;
 
+  color: #818181;
+  display: block;
+  width: 100%;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #212529;
+  padding-left: 20px;
+}
 
 .department{
   margin-left: 60px;

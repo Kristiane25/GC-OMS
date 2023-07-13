@@ -16,6 +16,7 @@ $message="Hello Admin";
         if(mysqli_num_rows($run))  
         {  
             $row = mysqli_fetch_assoc($run);
+            $u_id = $row['u_id'];
             $name = $row['name'];
             $prog = $row['program'];
             $company_supervisor = $row['company_supervisor'];
@@ -27,6 +28,7 @@ $message="Hello Admin";
             echo "<script>window.open('student/index.php','_self')</script>";  
   
             $_SESSION['name']=$name;
+            $_SESSION['u_id']=$u_id;
             $_SESSION['program']=$prog;
             $_SESSION['company_supervisor']=$company_supervisor;
             $_SESSION['company_name']=$company_name;
