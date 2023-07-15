@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2023 at 03:28 AM
+-- Generation Time: Jul 15, 2023 at 05:39 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -82,6 +82,41 @@ CREATE TABLE `files` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `log_table`
+--
+
+CREATE TABLE `log_table` (
+  `id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `log_entry` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `log_table`
+--
+
+INSERT INTO `log_table` (`id`, `u_id`, `name`, `log_entry`) VALUES
+(3, 1, 'Reginald Julius Ogaya', '[2023-07-08] [18:58:41] - Started OJT session.'),
+(4, 1, 'Reginald Julius Ogaya', '[2023-07-08] [21:01:45] - Ended OJT session.'),
+(5, 2, 'Angelo James Aguirre', '[2023-07-08] [19:04:10] - Started OJT session.'),
+(6, 2, 'Angelo James Aguirre', '[2023-07-08] [19:04:12] - Ended OJT session.'),
+(7, 11, 'Shermayne Ooi Francisco', '[2023-07-08] [19:04:44] - Started OJT session.'),
+(8, 11, 'Shermayne Ooi Francisco', '[2023-07-08] [22:04:46] - Ended OJT session.'),
+(9, 11, 'Shermayne Ooi Francisco', '[2023-07-10] [19:58:28] - Started OJT session.'),
+(10, 11, 'Shermayne Ooi Francisco', '[2023-07-10] [22:58:44] - Ended OJT session.'),
+(11, 11, 'Shermayne Ooi Francisco', '[2023-07-11] [20:00:33] - Started OJT session.'),
+(12, 11, 'Shermayne Ooi Francisco', '[2023-07-12] [00:00:35] - Ended OJT session.'),
+(13, 11, 'Shermayne Ooi Francisco', '[2023-07-13] [03:49:16] - Started OJT session.'),
+(14, 11, 'Shermayne Ooi Francisco', '[2023-07-13] [11:49:25] - Ended OJT session.'),
+(15, 1, 'Reginald Julius Ogaya', '[2023-07-13] [03:50:34] - Started OJT session.'),
+(16, 1, 'Reginald Julius Ogaya', '[2023-07-13] [12:50:37] - Ended OJT session.'),
+(17, 1, 'Reginald Julius Ogaya', '[2023-07-14] [03:50:40] - Started OJT session.'),
+(18, 1, 'Reginald Julius Ogaya', '[2023-07-14] [12:50:45] - Ended OJT session.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stud_login`
 --
 
@@ -141,6 +176,12 @@ ALTER TABLE `files`
   ADD PRIMARY KEY (`file_id`);
 
 --
+-- Indexes for table `log_table`
+--
+ALTER TABLE `log_table`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stud_login`
 --
 ALTER TABLE `stud_login`
@@ -167,6 +208,12 @@ ALTER TABLE `adv_login`
 --
 ALTER TABLE `files`
   MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- AUTO_INCREMENT for table `log_table`
+--
+ALTER TABLE `log_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `stud_login`
