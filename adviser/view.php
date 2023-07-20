@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST" action="total_hours.php"
                         class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                         <div class="input-group mt-3 mb-3">
-                            <input class="form-control" type="text" placeholder=""
+                            <input class="form-control" type="text" placeholder="Enter Student Id no."
                                 aria-label="Search for..." aria-describedby="btnNavbarSearch" id="u_id" name="u_id" />
                             <button class="btn btn-warning" id="btnNavbarSearch" type="submit">Monitor</button>
                         </div>

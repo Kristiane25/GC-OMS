@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Asia/Singapore');
+
 // Function to log OJT session start
 function logSessionEnd()
 {
@@ -31,9 +33,9 @@ function logSessionEnd()
     $sql = "INSERT INTO log_table (log_entry, u_id, name) VALUES ('$logEntry', '$u_id', '$name')";
 
     if ($con->query($sql) === TRUE) {
-        echo "Log entry stored in the database successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $con->error;
+//         echo "Log entry stored in the database successfully.";
+     } else {
+//         echo "Error: " . $sql . "<br>" . $con->error;
     }
 }
 

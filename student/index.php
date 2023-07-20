@@ -73,13 +73,13 @@ include 'connection.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Edit Company Information
                         </a>
-                        <a href="#" class="dropdown-btn nav-link" style="background-color: transparent";>
+                        <a href="#" class="dropdown-btn nav-link" style="background-color: transparent" ;>
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Log &nbsp; <i class="fa fa-caret-down"></i>
                         </a>
                         <div class="dropdown-container sb-nav-link-icon" style="background-color: transparent">
-                            <a class="nav-link" href="daily_log_start.php">Start</a>
-                            <a class="nav-link" href="daily_log_end.php">End</a>
+                            <a class="nav-link" href="daily_log_start.php" onclick="showPopup('start')">Start</a>
+                            <a class="nav-link" href="daily_log_end.php" onclick="showPopup('end')">End</a>
 
                         </div>
                         <!-- <a class="nav-link" href="index.php">
@@ -163,6 +163,7 @@ include 'connection.php';
     </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -206,6 +207,51 @@ include 'connection.php';
             var submenu = dropdown[i].nextElementSibling;
             submenu.style.marginLeft = "20px";
             submenu.style.display = "none";
+        }
+    </script>
+
+    <script>
+        function showPopup(action) {
+            // Create a new popup element
+            var popup = document.createElement("div");
+            popup.classList.add("popup");
+            var message = "";
+
+            if (action === "start") {
+                message = "OJT session started.";
+            } else if (action === "end") {
+                message = "OJT session ended.";
+            } else {
+                message = "error";
+            }
+
+            popup.innerHTML = message;
+
+            // Add some basic styles to the popup
+            popup.style.position = "fixed";
+            popup.style.top = "10%";
+            popup.style.left = "50%";
+            popup.style.transform = "translate(-50%, 10%)";
+            popup.style.width = "200px"; // Set the width to 300 pixels
+            popup.style.height = "50px";
+            popup.style.padding = "10px";
+            popup.style.backgroundColor = "#ffffff";
+            popup.style.border = "1px solid #cccccc";
+            popup.style.borderRadius = "5px";
+            popup.style.boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.2)";
+            popup.style.zIndex = "9999";
+            popup.style.fontSize = "18px";
+            popup.style.textAlign = "center";
+            popup.style.display = "flex"; // Set the popup as a flex container
+            popup.style.alignItems = "center";
+
+            // Add the popup to the document body
+            document.body.appendChild(popup);
+
+            // Remove the popup after a short delay (e.g., 3 seconds)
+            setTimeout(function () {
+                popup.remove();
+            }, 5000);
         }
     </script>
 </body>
