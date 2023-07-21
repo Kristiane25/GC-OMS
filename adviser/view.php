@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>User ID</th>
+                                            <th>Student ID</th>
                                             <th>Name</th>
                                             <th>Program</th>
                                             <th>Email</th>

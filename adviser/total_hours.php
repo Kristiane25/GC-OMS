@@ -104,80 +104,126 @@ include 'connection.php';
 
 
                     <div class="container">
-                        <?php 
-function calculateTotalHours($u_id)
-{
+                        <?php
+                        function getStudentProgram($conn, $u_id) {
+                            $query = "SELECT program FROM stud_login WHERE u_id = '$u_id'";
+                            $result = mysqli_query($conn, $query);
+                        
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                return $row['program'];
+                            } else {
+                                return null;
+                            }
+                        }
+
+                        // Function to retrieve the program associated with the advisor
+function getAdvisorProgram($conn) {
+    // Replace 'advisor_id' with the identifier for the advisor, e.g., $_SESSION['advisor_id']
+    $advisorId = $_SESSION['adv_no']; // Replace this with the actual identifier for the advisor
+
+    $query = "SELECT program FROM adv_login WHERE adv_no = '$advisorId'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['program'];
+    } else {
+        return null;
+    }
+}
+                        
+function calculateTotalHours($u_id) {
     // Database configuration
-    // Establish database conn
+    // Establish database connection
     $conn = mysqli_connect('localhost', 'root', '', 'u_reg');
 
     if (!$conn) {
-        die("Database conn failed: " . mysqli_connect_error());
+        die("Database connection failed: " . mysqli_connect_error());
     }
 
-    // Fetch student name from the database
-    $queryy = "SELECT name FROM log_table WHERE u_id = '$u_id'";
-    $result = mysqli_query($conn, $queryy);
+    // Get the program associated with the advisor
+    $advisorProgram = getAdvisorProgram($conn);
 
-    if ($result) {
+    // Get the program associated with the entered student ID
+    $studentProgram = getStudentProgram($conn, $u_id);
+
+     // Check if the programs match
+     if (!$studentProgram || $studentProgram !== $advisorProgram) {
+        $errorMessage = "The student does not belong to the $advisorProgram program.";
+        mysqli_close($conn);
+
+        // Display the error message as a popup using JavaScript
+        echo "<script>showPopup('$errorMessage');</script>";
+        echo "<script>setTimeout(function() { window.open('view.php','_self'); }, 750);</script>"; 
+
+        return;
+    }
+
+// Fetch student name from the database
+$queryy = "SELECT name FROM log_table WHERE u_id = '$u_id'";
+$result = mysqli_query($conn, $queryy);
+
+if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $studentName = $row['name'];
 
     // Print the student name in an <h4> heading
     echo "<h4 style='color: black;'>Student Name: $studentName</h4>";
 } else {
-    echo "Error executing query: " . mysqli_error($conn);
+    echo "<h4 style='color: black;'>Student has not logged yet.</h4>";
 }
 
     // Fetch log entries from the database for the given u_id
-    $query = "SELECT log_entry FROM log_table WHERE u_id = '$u_id'";
-    $result = mysqli_query($conn, $query);
+$query = "SELECT log_entry FROM log_table WHERE u_id = '$u_id'";
+$result = mysqli_query($conn, $query);
 
-    if ($result) {
-        $totalHours = 0;
+if ($result) {
+    $totalHours = 0;
 
-        // Create an array to store the start and end times separately
-        $sessions = array();
+    // Create an array to store the start and end times separately
+    $sessions = array();
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $logEntry = $row['log_entry'];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $logEntry = $row['log_entry'];
 
-            // Extract start and end times from log entry using regular expressions
-            $patternStart = '/\[(\d{4}-\d{2}-\d{2})\] \[(\d{2}:\d{2}:\d{2})\] - Started OJT session./';
-            $patternEnd = '/\[(\d{4}-\d{2}-\d{2})\] \[(\d{2}:\d{2}:\d{2})\] - Ended OJT session./';
+        // Extract start and end times from log entry using regular expressions
+        $patternStart = '/\[(\d{4}-\d{2}-\d{2})\] \[(\d{2}:\d{2}:\d{2})\] - Started OJT session./';
+        $patternEnd = '/\[(\d{4}-\d{2}-\d{2})\] \[(\d{2}:\d{2}:\d{2})\] - Ended OJT session./';
 
-            if (preg_match($patternStart, $logEntry, $matches)) {
-                $startTime = $matches[1] . " " . $matches[2];
+        if (preg_match($patternStart, $logEntry, $matches)) {
+            $startTime = $matches[1] . " " . $matches[2];
 
-                // Store the start time in the sessions array
-                $sessions[] = array('start' => $startTime);
-            } elseif (preg_match($patternEnd, $logEntry, $matches)) {
-                $endTime = $matches[1] . " " . $matches[2];
+            // Store the start time in the sessions array
+            $sessions[] = array('start' => $startTime, 'end' => null);
+        } elseif (preg_match($patternEnd, $logEntry, $matches)) {
+            $endTime = $matches[1] . " " . $matches[2];
 
-                // Retrieve the last session from the array and add the end time
-                $lastSession = end($sessions);
-                $lastSession['end'] = $endTime;
-                $sessions[key($sessions)] = $lastSession;
+            // Ensure there's a valid session in the array before updating the end time
+            if (!empty($sessions)) {
+                $key = count($sessions) - 1;
+                $sessions[$key]['end'] = $endTime;
 
                 // Calculate the session hours
-                $startDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $lastSession['start']);
-                $endDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $lastSession['end']);
+                $startDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $sessions[$key]['start']);
+                $endDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $endTime);
 
                 if ($startDateTimeObj && $endDateTimeObj) {
                     $sessionHours = ($endDateTimeObj->getTimestamp() - $startDateTimeObj->getTimestamp()) / (60 * 60);
-
                     $totalHours += $sessionHours;
                 } else {
                     echo "Invalid date/time format encountered.<br>";
                 }
             }
         }
+    }
 
         // Close database conn
         mysqli_close($conn);
 
         // Print the start and end times in a table
         echo "<div class='table-container'>";
+        echo "<a id='table-anchor'></a>";
         echo "<div class='table-responsive table-striped'>";
         echo "<table class='table' style='border-collapse: collapse;'>";
         echo "<thead>";
@@ -189,68 +235,70 @@ function calculateTotalHours($u_id)
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
-        // ...
 
-// Variables to store cumulative session hours, minutes, and seconds
-$cumulativeHours = 0;
-$cumulativeMinutes = 0;
-$cumulativeSeconds = 0;
+        // Variables to store cumulative session hours, minutes, and seconds
+        $cumulativeHours = 0;
+        $cumulativeMinutes = 0;
+        $cumulativeSeconds = 0;
 
-foreach ($sessions as $session) {
-    $startDate = explode(' ', $session['start']);
-    $endDate = explode(' ', $session['end']);
+        // Check if $sessions array is not empty before processing
+if (!empty($sessions)) {
+    foreach ($sessions as $session) {
+        $startDate = explode(' ', $session['start']);
+        $endDate = explode(' ', $session['end']);
 
-    $day = $startDate[0]; // Extract the day component
+        $day = $startDate[0]; // Extract the day component
 
-    // Calculate the session hours, minutes, and seconds
-    $startDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $session['start']);
-    $endDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $session['end']);
+        // Calculate the session hours, minutes, and seconds
+        $startDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $session['start']);
+        $endDateTimeObj = DateTime::createFromFormat('Y-m-d H:i:s', $session['end']);
 
-    if ($startDateTimeObj && $endDateTimeObj) {
-        $sessionSeconds = $endDateTimeObj->getTimestamp() - $startDateTimeObj->getTimestamp();
-        $sessionHours = floor($sessionSeconds / 3600);
-        $sessionMinutes = floor(($sessionSeconds % 3600) / 60);
-        $sessionSeconds = $sessionSeconds % 60;
+        if ($startDateTimeObj && $endDateTimeObj) {
+            $sessionSeconds = $endDateTimeObj->getTimestamp() - $startDateTimeObj->getTimestamp();
+            $sessionHours = floor($sessionSeconds / 3600);
+            $sessionMinutes = floor(($sessionSeconds % 3600) / 60);
+            $sessionSeconds = $sessionSeconds % 60;
 
-        // Add the session hours, minutes, and seconds to the cumulative values
-        $cumulativeHours += $sessionHours;
-        $cumulativeMinutes += $sessionMinutes;
-        $cumulativeSeconds += $sessionSeconds;
+            // Add the session hours, minutes, and seconds to the cumulative values
+            $cumulativeHours += $sessionHours;
+            $cumulativeMinutes += $sessionMinutes;
+            $cumulativeSeconds += $sessionSeconds;
 
-        // Handle any carryover from seconds to minutes and minutes to hours
-        if ($cumulativeSeconds >= 60) {
-            $cumulativeMinutes += floor($cumulativeSeconds / 60);
-            $cumulativeSeconds = $cumulativeSeconds % 60;
+            // Handle any carryover from seconds to minutes and minutes to hours
+            if ($cumulativeSeconds >= 60) {
+                $cumulativeMinutes += floor($cumulativeSeconds / 60);
+                $cumulativeSeconds = $cumulativeSeconds % 60;
+            }
+
+            if ($cumulativeMinutes >= 60) {
+                $cumulativeHours += floor($cumulativeMinutes / 60);
+                $cumulativeMinutes = $cumulativeMinutes % 60;
+            }
+                    echo "<tr>";
+                    echo "<td style='border: 1px solid black; padding: 5px;'>" . $startDate[0] . "</td>";
+                    echo "<td style='border: 1px solid black; padding: 5px;'>" . $startDate[1] . "</td>";
+                    echo "<td style='border: 1px solid black; padding: 5px;'>" . $endDate[1] . "</td>";
+                    echo "<td style='border: 1px solid black; padding: 5px;'>" . $sessionHours . "h " . $sessionMinutes . "m " . $sessionSeconds . "s" . "</td>";
+                    echo "</tr>";
+                } else {
+                    echo "Invalid date/time format encountered.<br>";
+                }
+            }
+
+            // Print the cumulative session hours, minutes, and seconds
+            echo "<tfoot>";
+            echo "<tr>";
+            echo "<td style='border: 1px solid black; padding: 5px;'></td>";
+            echo "<td style='border: 1px solid black; padding: 5px;'><strong>Cumulative Total:</strong></td>";
+            echo "<td style='border: 1px solid black; padding: 5px;'></td>";
+            echo "<td style='border: 1px solid black; padding: 5px;'><strong>" . $cumulativeHours . "h " . $cumulativeMinutes . "m " . $cumulativeSeconds . "s" . "<strong></td>";
+            echo "</tr>";
+            echo "</tfoot>";
+        } else {
+            echo "<tr>";
+            echo "<td colspan='4'>No session data found for this user.</td>";
+            echo "</tr>";
         }
-
-        if ($cumulativeMinutes >= 60) {
-            $cumulativeHours += floor($cumulativeMinutes / 60);
-            $cumulativeMinutes = $cumulativeMinutes % 60;
-        }
-
-        echo "<tr>";
-        echo "<td style='border: 1px solid black; padding: 5px;'>" . $startDate[0] . "</td>";
-        echo "<td style='border: 1px solid black; padding: 5px;'>" . $startDate[1] . "</td>";
-        echo "<td style='border: 1px solid black; padding: 5px;'>" . $endDate[1] . "</td>";
-        echo "<td style='border: 1px solid black; padding: 5px;'>" . $sessionHours . "h " . $sessionMinutes . "m " . $sessionSeconds . "s" . "</td>";
-        echo "</tr>";
-    } else {
-        echo "Invalid date/time format encountered.<br>";
-    }
-}
-
-// Print the cumulative session hours, minutes, and seconds
-echo "<tfoot>";
-echo "<tr>";
-echo "<td style='border: 1px solid black; padding: 5px;'></td>";
-echo "<td style='border: 1px solid black; padding: 5px;'><strong>Cumulative Total:</strong></td>";
-echo "<td style='border: 1px solid black; padding: 5px;'></td>";
-echo "<td style='border: 1px solid black; padding: 5px;'><strong>" . $cumulativeHours . "h " . $cumulativeMinutes . "m " . $cumulativeSeconds . "s" . "<strong></td>";
-echo "</tr>";
-echo "</tfoot>";
-
-// ...
-
 
         echo "</tbody>";
         echo "</table>";
@@ -262,13 +310,50 @@ echo "</tfoot>";
         echo "Error executing query: " . mysqli_error($conn);
     }
 }
+?>
 
+<script>
+    function showPopup(message) {
+        // Create a new popup element
+        var popup = document.createElement("div");
+        popup.classList.add("popup");
+
+        popup.innerHTML = message;
+
+        // Add some basic styles to the popup
+        popup.style.position = "fixed";
+        popup.style.top = "10%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, 10%)";
+        popup.style.width = "200px"; // Set the width to 200 pixels
+        popup.style.height = "200px";
+        popup.style.padding = "10px";
+        popup.style.backgroundColor = "#ffffff";
+        popup.style.border = "1px solid #cccccc";
+        popup.style.borderRadius = "5px";
+        popup.style.boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.2)";
+        popup.style.zIndex = "9999";
+        popup.style.fontSize = "18px";
+        popup.style.textAlign = "center";
+        popup.style.display = "flex"; // Set the popup as a flex container
+        popup.style.alignItems = "center";
+        popup.style.color = "black"; // Set the font color to black
+
+        // Add the popup to the document body
+        document.body.appendChild(popup);
+
+        // Scroll back to the table after a short delay (e.g., 5 seconds)
+        setTimeout(function () {
+            popup.remove();
+        }, 5000);
+    }
+
+</script>
+
+<?php
 // Usage:
 $u_id = $_POST['u_id']; // Assuming u_id is retrieved from the session
 $totalHours = calculateTotalHours($u_id);
-// echo "Total OJT hours for student with u_id $u_id: " . $totalHours . " hours";
-
-
 ?>
                     </div>
 
@@ -314,7 +399,7 @@ $totalHours = calculateTotalHours($u_id);
     <script src="js/datatables-simple-demo.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
 
 </body>
 
